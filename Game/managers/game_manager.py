@@ -8,23 +8,25 @@ class Game_Manager():
     ----------
     game_started : bool
         True if the game is running, False otherwise
+    game_loop : bool
+        True if the app is running, False otherwise
     screen_width : float
         Width of the game screen
     screen_height : float
         Height of the game screen
-    process : list
-        A list of Callables that run game logic
-    draw : list
-        A list of layers, each one being a list
-        of Callables that put things on screen
-    event : list
-        A list of Callables that receive game
-        input and run code acordingly
+    current_screen : Screen
+        The screen being rendered at the moment
+    game_name: string
+        The title of the game
 
     Methods
     -------
     start_game()
         Run the game
+    change_game_name(name)
+        Change the name of the game and the display caption
+    change_screen(screen)
+        Change the current screen, getting rid of the old and populating the new
     update_screen_size()
         Catch the current screen size
     '''
@@ -51,7 +53,7 @@ class Game_Manager():
         
         Game_Manager.game_started = True
     
-    def game_over(winner):
+    def game_over():
         '''End the game'''
 
         Game_Manager.game_started = False
