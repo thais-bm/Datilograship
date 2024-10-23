@@ -1,0 +1,1 @@
+SEGA = 'assets/menu_assets/SegaArcadeFont-Regular.ttf'
