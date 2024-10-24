@@ -21,21 +21,19 @@ class KeyListener(Entity):
         self.keys = keys
         self.actions = actions
         self.pressed_keys = {}
+        # Add colors to each key latter
+        self.key_colors = {}
         
         self.key_size = (40, 40)
-        self.container_rect = pygame.Rect(100, 100, 500, 200)  # Retângulo que contém as teclas
+        self.container_rect = pygame.Rect(100, 100, 500, 200)
         self.keyboard = self.keyboard_layout() 
             
-
-    '''def event(self, event):
-        if event.type == pygame.KEYDOWN:
-            if event.key in self.keys:
-                for action in self.actions:
-                    action()'''
                     
     def input_key(self, key_char, pressed):
         # Update the pressed state of a key
         self.pressed_keys[key_char] = pressed
+        
+        # debug: key_char
         print(key_char)
         
     def event(self, event):
@@ -75,7 +73,15 @@ class KeyListener(Entity):
         
         for i, row in enumerate(letters):
             for j, key in enumerate(row):
-                x = inicial_x + j * (self.key_size[0] + 10)
+                # Each i is a row of lists, gives it a stairs look
+                # i == 1 is the second list
+                if i == 1:  
+                    x = inicial_x + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 2)
+                elif i == 2:  
+                    x = inicial_x+ 30 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
+                else:
+                    x = inicial_x + j * (self.key_size[0] + 10)
+                
                 y = inicial_y + i * (self.key_size[1] + 10)
                 layout.append((key, x, y))
                 
@@ -84,16 +90,15 @@ class KeyListener(Entity):
     def draw(self, screen):
         font = pygame.font.SysFont(fonts.SEGA, 30)
         
-        pygame.draw.rect(screen, colors.BLUE, self.container_rect)
-        pygame.draw.rect(screen, colors.BLACK, self.container_rect, 2)
-        
         for key, x, y in self.keyboard:
             key_x = self.container_rect.x + x
             key_y = self.container_rect.y + y
         
             color = colors.WHITE
             if self.pressed_keys.get(key.lower(), False): 
-                color = (0, 255, 0)  
+                color = colors.GREEN
+            if self.pressed_keys.get(key.upper(), False):
+                color = colors.GREEN
             
             # The * symbol unpacks the values
             
@@ -106,8 +111,5 @@ class KeyListener(Entity):
             label_rect = label.get_rect(center =(key_x + self.key_size[0] // 2, key_y + self.key_size[1] // 2))
             screen.blit(label, label_rect)
             
-    def move_keyboard(self, dx, dy):
-        self.container_rect.x += dx
-        self.container_rect.y += dy
           
              
