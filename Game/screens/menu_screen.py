@@ -3,6 +3,7 @@ import pygame
 import managers.game_manager as mng
 
 from entities.text import Text
+from entities.keyboard import Keyboard
 from entities.key_listener import KeyListener
 from entities.button import Button
 
@@ -16,6 +17,7 @@ class Menu_Screen(Screen):
     def populate(self):
         # Start Background music
         pygame.mixer.Sound.play(BACKGROUND, loops=-1)
+        self.keyboard = Keyboard()
 
         # Esc Listener
         self.exit_listener = KeyListener([pygame.K_ESCAPE], [mng.Game_Manager.close_game])
