@@ -17,33 +17,34 @@ class Keyboard(Entity):
         self.container_rect = pygame.Rect(100, 100, 500, 200)
         self.keyboard = self.keyboard_layout() 
             
-                    
-    def input_key(self, key_char, pressed):
-        # Update the pressed state of a key
-        self.pressed_keys[key_char] = pressed
-        
-        # debug: key_char
-        print(key_char)
-        
     def event(self, event):
         if event.type == pygame.KEYDOWN:
             # Mods check to see if caps lock is on
             mods = pygame.key.get_mods() 
             key_char = pygame.key.name(event.key)
+
+            # debug: key_char
+            print(key_char,"Pressed")
             
-            if (mods and pygame.KMOD_CAPS) and key_char.isalpha():
+            if mods and pygame.KMOD_CAPS and key_char.isalpha():
                 key_char = key_char.upper()
-            
             else:
                 key_char = key_char.lower()
 
             # Update pressed key
-            self.input_key(key_char, True)
+            self.pressed_keys[key_char] = True
+
 
         # The key is not being pressed
         elif event.type == pygame.KEYUP:
-            key_char = pygame.key.name(event.key).lower()
-            self.input_key(key_char, False)
+            key_char = pygame.key.name(event.key)
+
+            # debug: key_char
+            print(key_char,"Released")
+            
+            self.pressed_keys[key_char.lower()] = False
+            self.pressed_keys[key_char.upper()] = False
+
             
     def keyboard_layout(self):
         layout = []
