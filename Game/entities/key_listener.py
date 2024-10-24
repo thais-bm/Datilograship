@@ -23,8 +23,8 @@ class KeyListener(Entity):
         self.pressed_keys = {}
         # Add colors to each key latter
         self.key_colors = {}
-        
         self.key_size = (40, 40)
+        self.space_size = (280, 40)
         self.container_rect = pygame.Rect(100, 100, 500, 200)
         self.keyboard = self.keyboard_layout() 
             
@@ -68,8 +68,9 @@ class KeyListener(Entity):
         letters = [
                 ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
                 ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-                ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
-                ]
+                ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
+                ['SPACE']
+        ]
         
         for i, row in enumerate(letters):
             for j, key in enumerate(row):
@@ -78,10 +79,12 @@ class KeyListener(Entity):
                 if i == 1:  
                     x = inicial_x + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 2)
                 elif i == 2:  
-                    x = inicial_x+ 30 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
+                    x = inicial_x + 30 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
+                elif i == 3:
+                    x = inicial_x + 60 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
                 else:
                     x = inicial_x + j * (self.key_size[0] + 10)
-                
+
                 y = inicial_y + i * (self.key_size[1] + 10)
                 layout.append((key, x, y))
                 
@@ -93,23 +96,29 @@ class KeyListener(Entity):
         for key, x, y in self.keyboard:
             key_x = self.container_rect.x + x
             key_y = self.container_rect.y + y
-        
+
             color = colors.WHITE
             if self.pressed_keys.get(key.lower(), False): 
                 color = colors.GREEN
             if self.pressed_keys.get(key.upper(), False):
                 color = colors.GREEN
-            
-            # The * symbol unpacks the values
-            
-            pygame.draw.rect(screen, color, (key_x, key_y, *self.key_size))
-            pygame.draw.rect(screen, colors.BLACK, (key_x, key_y, *self.key_size), 2) 
-            
-            
-            label = font.render(key, True, colors.BLACK)
-            
-            label_rect = label.get_rect(center =(key_x + self.key_size[0] // 2, key_y + self.key_size[1] // 2))
-            screen.blit(label, label_rect)
+
+            if key == 'SPACE':
+                pygame.draw.rect(screen, color, (key_x, key_y, *self.space_size))
+                pygame.draw.rect(screen, colors.BLACK, (key_x, key_y, *self.space_size), 2)
+                label = font.render(key, True, colors.BLACK)
+                label_rect = label.get_rect(center=(key_x + self.space_size[0] // 2, key_y + self.space_size[1] // 2))
+                screen.blit(label, label_rect)
+
+            else:
+                # The * symbol unpacks the values
+                pygame.draw.rect(screen, color, (key_x, key_y, *self.key_size))
+                pygame.draw.rect(screen, colors.BLACK, (key_x, key_y, *self.key_size), 2)
+
+                label = font.render(key, True, colors.BLACK)
+
+                label_rect = label.get_rect(center=(key_x + self.key_size[0] // 2, key_y + self.key_size[1] // 2))
+                screen.blit(label, label_rect)
             
           
              
