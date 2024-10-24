@@ -18,7 +18,7 @@ class Menu_Screen(Screen):
     def populate(self):
         # Start Background music
         pygame.mixer.Sound.play(BACKGROUND, loops=-1)
-        self.keyboard = Keyboard()
+        self.keyboard = Keyboard(450, 580)
 
         # Esc Listener
         self.exit_listener = KeyListener([pygame.K_ESCAPE], [mng.Game_Manager.close_game])

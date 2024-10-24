@@ -29,7 +29,7 @@ class Image(Entity):
         if height == None:
             height = self.image.get_height()
 
-        self.position = (center[0] - self.image.get_width()/2, center[1] - self.image.get_height()/2)
+        self.position = (center[0] - width/2, center[1] - height/2)
 
         # Scaling the image to the right size
         self.image = pygame.transform.scale(self.image, (width, height))

@@ -6,8 +6,12 @@ import resource.fonts as fonts
 import resource.color as colors
 
 class Keyboard(Entity):
-    def __init__(self, layer = 0):
+    def __init__(self, x, y, layer = 0):
         super().__init__(layer)
+
+        self.x = x
+        self.y = y
+
         self.pressed_keys = {}
         # Add colors to each key latter
         self.key_colors = {}
@@ -16,6 +20,7 @@ class Keyboard(Entity):
         self.caps_size = (30,30)
         self.container_rect = pygame.Rect(100, 100, 500, 200)
         self.keyboard = self.keyboard_layout() 
+
             
     def event(self, event):
         if event.type == pygame.KEYDOWN:
@@ -41,15 +46,13 @@ class Keyboard(Entity):
 
             # debug: key_char
             print(key_char,"Released")
-            
+
             self.pressed_keys[key_char.lower()] = False
             self.pressed_keys[key_char.upper()] = False
 
             
     def keyboard_layout(self):
         layout = []
-        inicial_x = 450
-        inicial_y = 580
         
         letters = [
                 ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -63,15 +66,15 @@ class Keyboard(Entity):
                 # Each i is a row of lists, gives it a stairs look
                 # i == 1 is the second list
                 if i == 1:  
-                    x = inicial_x - 45 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 2)
+                    x = self.x - 45 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 2)
                 elif i == 2:  
-                    x = inicial_x + 30 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
+                    x = self.x + 30 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
                 elif i == 3:
-                    x = inicial_x + 60 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
+                    x = self.x + 60 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
                 else:
-                    x = inicial_x + j * (self.key_size[0] + 10)
+                    x = self.x + j * (self.key_size[0] + 10)
 
-                y = inicial_y + i * (self.key_size[1] + 10)
+                y = self.y + i * (self.key_size[1] + 10)
                 layout.append((key, x, y))
                 
         return layout
