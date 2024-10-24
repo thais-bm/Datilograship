@@ -8,6 +8,7 @@ from entities.key_listener import KeyListener
 from entities.button import Button
 
 from screens.screen_base import Screen
+from screens.tutorial_screen import Tutorial_Screen
 
 from resource.color import *
 from resource.fonts import *
@@ -46,7 +47,7 @@ class Menu_Screen(Screen):
         self.play_button.on_hover_exit.append(lambda: self.play_button.change_color(WHITE))
 
         # Registering reactions for clicking it
-        self.play_button.on_click.append(lambda: print("Play"))
+        self.play_button.on_click.append(lambda: mng.Game_Manager.change_screen(Tutorial_Screen()))
         
         # Exit button
         self.exit_button = Button(content = "Exit",
