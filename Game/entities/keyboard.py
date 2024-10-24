@@ -88,7 +88,7 @@ class Keyboard(Entity):
         elif key in ['CAPS LOCK', 'SHIFT']: 
             return colors.PINK
         elif key in ['SPACE']:
-            return colors.GREEN
+            return colors.CYAN
         elif key in 'VFR45TGBNHY67UJM':
             return colors.BLUE
         elif key in 'CDE38IK':
