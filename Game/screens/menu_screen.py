@@ -25,45 +25,45 @@ class Menu_Screen(Screen):
 
         # Game name in Menu
         self.title = Text(content = mng.Game_Manager.game_name, 
-                              center=(mng.Game_Manager.screen_width//4.5, mng.Game_Manager.screen_height//4),
+                              center=(mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.1),
                               size = 60,
                               font = SEGA,
                               color = WHITE)
         
         # Play button
         self.play_button = Button(content = "Play",
-                                      center = (mng.Game_Manager.screen_width//4.5, 420),
+                                      center = (mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.25),
                                       size = 50,
                                       font = SEGA,
-                                      color = WHITE)
+                                      color = BLACK)
         
         # Registering reactions for starting hovering it
-        self.play_button.on_hover_enter.append(lambda: self.play_button.change_text("- " + self.play_button.content))
-        self.play_button.on_hover_enter.append(lambda: self.play_button.change_color(PINK))
+        self.play_button.on_hover_enter.append(lambda: self.play_button.text.change_text("- " + self.play_button.text.content))
+        self.play_button.on_hover_enter.append(lambda: self.play_button.text.change_color(PINK))
         self.play_button.on_hover_enter.append(lambda: DECISION.play(0,0))
 
         # Registering reactions for stopping hovering it
-        self.play_button.on_hover_exit.append(lambda: self.play_button.change_text(self.play_button.content.replace('- ', '')))
-        self.play_button.on_hover_exit.append(lambda: self.play_button.change_color(WHITE))
+        self.play_button.on_hover_exit.append(lambda: self.play_button.text.change_text(self.play_button.text.content.replace('- ', '')))
+        self.play_button.on_hover_exit.append(lambda: self.play_button.text.change_color(BLACK))
 
         # Registering reactions for clicking it
         self.play_button.on_click.append(lambda: mng.Game_Manager.change_screen(Tutorial_Screen()))
         
         # Exit button
         self.exit_button = Button(content = "Exit",
-                                      center = (mng.Game_Manager.screen_width//4.5, 480),
+                                      center = (mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.35),
                                       size = 50,
                                       font = SEGA,
-                                      color = WHITE)
+                                      color = BLACK)
         
         # Registering reactions for starting hovering it
-        self.exit_button.on_hover_enter.append(lambda: self.exit_button.change_text("- " + self.exit_button.content))
-        self.exit_button.on_hover_enter.append(lambda: self.exit_button.change_color(PINK))
+        self.exit_button.on_hover_enter.append(lambda: self.exit_button.text.change_text("- " + self.exit_button.text.content))
+        self.exit_button.on_hover_enter.append(lambda: self.exit_button.text.change_color(PINK))
         self.exit_button.on_hover_enter.append(lambda: DECISION.play(0,0))
 
         # Registering reactions for stopping hovering it
-        self.exit_button.on_hover_exit.append(lambda: self.exit_button.change_text(self.exit_button.content.replace('- ', '')))
-        self.exit_button.on_hover_exit.append(lambda: self.exit_button.change_color(WHITE))
+        self.exit_button.on_hover_exit.append(lambda: self.exit_button.text.change_text(self.exit_button.text.content.replace('- ', '')))
+        self.exit_button.on_hover_exit.append(lambda: self.exit_button.text.change_color(BLACK))
         
         # Registering reactions for clicking it
         self.exit_button.on_click.append(mng.Game_Manager.close_game)

@@ -1,11 +1,13 @@
 from resource.color import *
+from entities.entity_base import Entity
 from entities.text import Text
+from entities.image import Image
 
 import pygame
 
-class Button(Text):
+class Button(Entity):
     '''
-    Shows Text on screen that reacts to hover and clicks
+    Shows a Button with image and text on screen that reacts to hover and clicks
 
     Attributes
     ----------
@@ -19,10 +21,17 @@ class Button(Text):
         Which font should be used on the text
     color:
         The text's color
+    image_path:
+        The path to the button's image, if not given the base button image will be used
     '''
-    def __init__(self, content, center, size, font, color, layer = 2):
-        super().__init__(content, center, size, font, color, layer)
-        
+    def __init__(self, center, size, font, color, content = "", image_path = "assets/Button_Base.png", layer = 2):
+        self.image = Image(path = image_path, center = center)
+        self.text = Text(content, center, size, font, color)
+
+        super().__init__(layer)
+
+        self.center = center
+
         self.hovering = False
         self.on_hover_enter = []
         self.on_hover_exit = []
@@ -32,7 +41,9 @@ class Button(Text):
 
     def process(self):
         mouse_pos = pygame.mouse.get_pos()
-        if (self.rect.collidepoint(mouse_pos)):
+        image_rect = self.image.image.get_rect()
+        image_rect.center = self.center
+        if (image_rect.collidepoint(mouse_pos)):
             if not self.hovering:
                 self.hovering = True
                 for func in self.on_hover_enter:
@@ -46,7 +57,9 @@ class Button(Text):
 
     def event(self, event):
         mouse_pos = pygame.mouse.get_pos()
+        image_rect = self.image.image.get_rect()
+        image_rect.center = self.center
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if (self.rect.collidepoint(mouse_pos)):
+            if (image_rect.collidepoint(mouse_pos)):
                 for func in self.on_click:
                     func()
