@@ -25,6 +25,7 @@ class KeyListener(Entity):
         self.key_colors = {}
         self.key_size = (40, 40)
         self.space_size = (280, 40)
+        self.caps_size = (30,30)
         self.container_rect = pygame.Rect(100, 100, 500, 200)
         self.keyboard = self.keyboard_layout() 
             
@@ -67,17 +68,17 @@ class KeyListener(Entity):
         
         letters = [
                 ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-                ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+                ['CAPS LOCK', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ç'],
                 ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
                 ['SPACE']
         ]
-        
+
         for i, row in enumerate(letters):
             for j, key in enumerate(row):
                 # Each i is a row of lists, gives it a stairs look
                 # i == 1 is the second list
                 if i == 1:  
-                    x = inicial_x + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 2)
+                    x = inicial_x - 45 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 2)
                 elif i == 2:  
                     x = inicial_x + 30 + (j * (self.key_size[0] + 10)) + (self.key_size[0] // 4)
                 elif i == 3:
@@ -90,14 +91,35 @@ class KeyListener(Entity):
                 
         return layout
     
+    def get_key_color(self, key):
+        key = key.upper()  
+        if key in 'XSW2LO9':
+            return colors.YELLOW
+        elif key in 'AZQ1ÇP0': 
+            return colors.PINK
+        elif key in ['CAPS LOCK', 'SHIFT']: 
+            return colors.PINK
+        elif key in ['SPACE']:
+            return colors.GREEN
+        elif key in 'VFR45TGB':
+            return colors.BLUE
+        elif key in 'NHY67UJM':
+            return colors.POTATO
+        elif key in 'CDE38IK':
+            return colors.ORANGE
+        else:
+            return colors.WHITE  
+        
     def draw(self, screen):
         font = pygame.font.SysFont(fonts.SEGA, 30)
+        small_font = pygame.font.SysFont(fonts.SEGA, 20) 
         
         for key, x, y in self.keyboard:
             key_x = self.container_rect.x + x
             key_y = self.container_rect.y + y
 
-            color = colors.WHITE
+            color = self.get_key_color(key)
+            
             if self.pressed_keys.get(key.lower(), False): 
                 color = colors.GREEN
             if self.pressed_keys.get(key.upper(), False):
@@ -109,16 +131,26 @@ class KeyListener(Entity):
                 label = font.render(key, True, colors.BLACK)
                 label_rect = label.get_rect(center=(key_x + self.space_size[0] // 2, key_y + self.space_size[1] // 2))
                 screen.blit(label, label_rect)
+                
+            elif key == 'CAPS LOCK':
+                pygame.draw.rect(screen, color, (key_x, key_y, *self.key_size))
+                pygame.draw.rect(screen, colors.BLACK, (key_x, key_y, *self.key_size), 2)
+
+                caps_label = small_font.render("CAPS", True, colors.BLACK)
+                lock_label = small_font.render("LOCK", True, colors.BLACK)
+
+                caps_rect = caps_label.get_rect(center=(key_x + self.key_size[0] // 2, key_y + self.key_size[1] // 3))
+                lock_rect = lock_label.get_rect(center=(key_x + self.key_size[0] // 2, key_y + 2 * self.key_size[1] // 3))
+
+                screen.blit(caps_label, caps_rect)
+                screen.blit(lock_label, lock_rect)
+                  
 
             else:
                 # The * symbol unpacks the values
                 pygame.draw.rect(screen, color, (key_x, key_y, *self.key_size))
                 pygame.draw.rect(screen, colors.BLACK, (key_x, key_y, *self.key_size), 2)
-
                 label = font.render(key, True, colors.BLACK)
 
                 label_rect = label.get_rect(center=(key_x + self.key_size[0] // 2, key_y + self.key_size[1] // 2))
-                screen.blit(label, label_rect)
-            
-          
-             
+                screen.blit(label, label_rect)     
