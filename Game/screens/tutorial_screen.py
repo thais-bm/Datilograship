@@ -17,9 +17,9 @@ from screens.game_screen import Game_Screen
 
 class Tutorial_Screen(Screen):
     def populate(self):
-        self.keyboard = Keyboard(Game_Manager.screen_width * 0.2, Game_Manager.screen_height * 0.2)
+        self.keyboard = Keyboard(Game_Manager.screen_width * 0.2, Game_Manager.screen_height * 0.35)
         self.image = Image(path = "assets\Hand.png", 
-                           center = (Game_Manager.screen_width * 0.7, Game_Manager.screen_height * 0.4),
+                           center = (Game_Manager.screen_width * 0.7, Game_Manager.screen_height * 0.5),
                            width = Game_Manager.screen_width * 0.2,
                            height = Game_Manager.screen_height * 0.3)
 
@@ -33,8 +33,20 @@ class Tutorial_Screen(Screen):
                               size = 60,
                               font = SEGA,
                               color = WHITE)
-        self.say = Text(content="Teste o funcionamento do seu teclado aqui!",
-                          center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.2),
+        self.say = Text(content="Seu objetivo é escrever as palavras e letras antes que",
+                          center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.18),
+                          size=40,
+                          font=SANS,
+                          color=WHITE)
+
+        self.say2 = Text(content="elas cheguem até voce! Voce tem apenas 3 chances",
+                          center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.23),
+                          size=40,
+                          font=SANS,
+                          color=WHITE)
+
+        self.say3 = Text(content="Aproveite o momento para testar o seu teclado",
+                          center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.30),
                           size=40,
                           font=SANS,
                           color=WHITE)

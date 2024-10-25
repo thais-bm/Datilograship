@@ -25,8 +25,20 @@ class Keyboard(Entity):
     def event(self, event):
         if event.type == pygame.KEYDOWN:
             # Mods check to see if caps lock is on
-            mods = pygame.key.get_mods() 
-            key_char = pygame.key.name(event.key)
+            mods = pygame.key.get_mods()
+
+            letters = [
+                ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+                ['CAPS LOCK', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ç'],
+                ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
+                ['SPACE']
+            ]
+
+            # Trying to add Unicode char
+            if event.unicode:
+                key_char = event.unicode
+            else:
+                key_char = pygame.key.name(event.key)
 
             # debug: key_char
             print(key_char,"Pressed")
@@ -39,10 +51,12 @@ class Keyboard(Entity):
             # Update pressed key
             self.pressed_keys[key_char] = True
 
-
         # The key is not being pressed
         elif event.type == pygame.KEYUP:
-            key_char = pygame.key.name(event.key)
+            if event.unicode:
+                key_char = event.unicode
+            else:
+                key_char = pygame.key.name(event.key)
 
             # debug: key_char
             print(key_char,"Released")
