@@ -30,13 +30,14 @@ class Tutorial_Screen(Screen):
                               size = 60,
                               font = SEGA,
                               color = WHITE)
-        self.say = Text(content="Teste o funcionamento do teu teclado aqui!",
+        self.say = Text(content="Teste o funcionamento do seu teclado aqui!",
                           center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.2),
                           size=40,
-                          font=SEGA,
+                          font=SANS,
                           color=WHITE)
+
         self.enter = Text(content = "Aperte ENTER para prosseguir",
                               center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.8),
                               size = 60,
-                              font = SEGA,
+                              font = SANS,
                               color = WHITE)
