@@ -18,7 +18,7 @@ class Menu_Screen(Screen):
     def populate(self):
         # Start Background music
         pygame.mixer.Sound.play(BACKGROUND, loops=-1)
-        self.keyboard = Keyboard(450, 580)
+        # self.keyboard = Keyboard(450, 580)
 
         # Esc Listener
         self.exit_listener = KeyListener([pygame.K_ESCAPE], [mng.Game_Manager.close_game])
@@ -32,7 +32,7 @@ class Menu_Screen(Screen):
         
         # Play button
         self.play_button = Button(content = "Play",
-                                      center = (mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.25),
+                                      center = (mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.4),
                                       size = 50,
                                       font = SEGA,
                                       color = BLACK)
@@ -51,7 +51,7 @@ class Menu_Screen(Screen):
         
         # Exit button
         self.exit_button = Button(content = "Exit",
-                                      center = (mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.35),
+                                      center = (mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.5),
                                       size = 50,
                                       font = SEGA,
                                       color = BLACK)
