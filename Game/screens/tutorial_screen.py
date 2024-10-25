@@ -5,11 +5,14 @@ from managers.game_manager import Game_Manager
 from entities.keyboard import Keyboard
 from entities.image import Image
 from entities.text import Text
+import managers.game_manager as mng
+
 
 import pygame
 from entities.key_listener import KeyListener
 from resource.fonts import *
 from resource.color import *
+from screens.game_screen import Game_Screen
 
 
 class Tutorial_Screen(Screen):
@@ -22,7 +25,7 @@ class Tutorial_Screen(Screen):
 
         # Return/Enter keyboard Listener -> "Press enter to pass the tutorial"
         # Debug mode: It closes the game
-        self.return_listener = KeyListener([pygame.K_RETURN], [Game_Manager.close_game])
+        self.exit_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
 
         # Text setups
         self.title = Text(content = "Como jogar",
@@ -41,3 +44,5 @@ class Tutorial_Screen(Screen):
                               size = 60,
                               font = SANS,
                               color = WHITE)
+        
+        self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: mng.Game_Manager.change_screen(Game_Screen())])
