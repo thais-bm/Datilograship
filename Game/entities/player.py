@@ -7,10 +7,10 @@ from entities.image import Image
 # Just a scope of the player
 # -> Life, Skin and position
 class Player(sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, center):
         sprite.Sprite.__init__(self)
         self.life = 3
-        self.image = Image(path=image_path, center=center)
+        self.image = Image(path='./assets/player.png', center=center)
         self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.x = center[0]
+        self.rect.y = center[1]
