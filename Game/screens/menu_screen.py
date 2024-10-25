@@ -15,7 +15,12 @@ from resource.fonts import *
 from resource.sound import *
 
 class Menu_Screen(Screen):
+    def __del__(self):
+        pass
     def populate(self):
+        # Stop all music from background
+        pygame.mixer.stop()
+
         # Start Background music
         pygame.mixer.Sound.play(BACKGROUND, loops=-1)
         # self.keyboard = Keyboard(450, 580)

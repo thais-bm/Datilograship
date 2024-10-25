@@ -35,7 +35,7 @@ class Keyboard(Entity):
             ]
 
             # Trying to add Unicode char
-            if event.unicode:
+            if event.unicode and event.unicode is not ' ':
                 key_char = event.unicode
             else:
                 key_char = pygame.key.name(event.key)
@@ -53,7 +53,7 @@ class Keyboard(Entity):
 
         # The key is not being pressed
         elif event.type == pygame.KEYUP:
-            if event.unicode:
+            if event.unicode and event.unicode is not ' ':
                 key_char = event.unicode
             else:
                 key_char = pygame.key.name(event.key)
