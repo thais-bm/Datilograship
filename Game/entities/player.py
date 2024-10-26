@@ -7,6 +7,8 @@ class Player(Entity):
         self.life = 3
         self.sprite = Image(path = sprite_path, center = center, width = width, height = height)
 
+        self.center = center
+
         self.angle = -90
 
         if hitbox == None:
