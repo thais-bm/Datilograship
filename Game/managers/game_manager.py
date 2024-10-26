@@ -40,6 +40,10 @@ class Game_Manager():
 
     game_name = ''
 
+    player = None
+    score = 0
+    combo = 0
+
     def change_game_name(name):
         Game_Manager.game_name = name
         pygame.display.set_caption(name)
@@ -79,3 +83,11 @@ class Game_Manager():
         n_per_pixel = number / width
         return n_per_pixel * Game_Manager.screen_width
     
+    def increase_combo(value = 1):
+        Game_Manager.combo += value
+
+    def increase_score(value):
+        Game_Manager.score += value
+
+    def reset_combo():
+        Game_Manager.combo = 0

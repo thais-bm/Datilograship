@@ -25,7 +25,7 @@ class Button(Entity):
         The path to the button's image, if not given the base button image will be used
     '''
     def __init__(self, center, size, font, color, content = "", image_path = "assets/Button_Base.png", layer = 2):
-        self.image = Image(path = image_path, center = center)
+        self.sprite = Image(path = image_path, center = center)
         self.text = Text(content, center, size, font, color)
 
         super().__init__(layer)
@@ -41,7 +41,7 @@ class Button(Entity):
 
     def process(self):
         mouse_pos = pygame.mouse.get_pos()
-        image_rect = self.image.image.get_rect()
+        image_rect = self.sprite.image.get_rect()
         image_rect.center = self.center
         if (image_rect.collidepoint(mouse_pos)):
             if not self.hovering:
@@ -57,7 +57,7 @@ class Button(Entity):
 
     def event(self, event):
         mouse_pos = pygame.mouse.get_pos()
-        image_rect = self.image.image.get_rect()
+        image_rect = self.sprite.image.get_rect()
         image_rect.center = self.center
         if event.type == pygame.MOUSEBUTTONDOWN:
             if (image_rect.collidepoint(mouse_pos)):

@@ -7,14 +7,17 @@ import pygame
 
 # Just a scope of the player
 # -> Life, Skin and position
-class Player():
-    def __init__(self, center):
+class Player(Entity):
+    def __init__(self, center, sprite_path, hitbox = None, width = None, height = None, layer = 1):
+        super().__init__(layer = layer)
         self.life = 3
-        self.score = 0
-        self.combo = 10
-        # self.rect = self.image.get_rect()
-        # self.rect.x = center[0]
-        # self.rect.y = center[1]
+        self.sprite = Image(path = sprite_path, center = center, width = width, height = height)
+
+        self.angle = -90
+
+        if hitbox == None:
+            hitbox = self.sprite.image.get_rect()
+            
 
     def life_Bar(self):
         self.heart_full = pygame.image.load("assets/player_assets/life_0.png").convert_alpha()
