@@ -23,9 +23,10 @@ class Tutorial_Screen(Screen):
                            width = Game_Manager.screen_width * 0.2,
                            height = Game_Manager.screen_height * 0.3)
 
-        # Return/Enter keyboard Listener -> "Press enter to pass the tutorial"
-        # Debug mode: It closes the game
+        # ESC listener -> Close game
+        # Enter keyboard Listener -> Go to game screen
         self.exit_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
+        self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: mng.Game_Manager.change_screen(Game_Screen())])
 
         # Text setups
         self.title = Text(content = "Como jogar",
@@ -56,5 +57,4 @@ class Tutorial_Screen(Screen):
                               size = 60,
                               font = SANS,
                               color = WHITE)
-        
-        self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: mng.Game_Manager.change_screen(Game_Screen())])
+

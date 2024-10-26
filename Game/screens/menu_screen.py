@@ -3,7 +3,6 @@ import pygame
 import managers.game_manager as mng
 
 from entities.text import Text
-from entities.keyboard import Keyboard
 from entities.key_listener import KeyListener
 from entities.button import Button
 
@@ -18,8 +17,9 @@ class Menu_Screen(Screen):
     def __del__(self):
         pass
     def populate(self):
-        # Stop all music from background
-        pygame.mixer.stop()
+        # If music is been played on background -> Stop music
+        if pygame.mixer.get_busy():
+            pygame.mixer.stop()
 
         # Start Background music
         pygame.mixer.Sound.play(BACKGROUND, loops=-1)

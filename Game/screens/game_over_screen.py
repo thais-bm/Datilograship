@@ -12,6 +12,12 @@ from resource.color import *
 class Game_Over_Screen(Screen):
 
     def populate(self):
+        # If music is being played on background -> Stop music
+        if pygame.mixer.get_busy():
+            pygame.mixer.stop()
+
+        #Esc Listerner
+        self.esc_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
 
         self.defeat = Text(content="DERROTA",
                           center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.30),
@@ -20,7 +26,7 @@ class Game_Over_Screen(Screen):
                           color=WHITE)
 
         self.image = Image(path="assets\player_defeat.png",
-                           center=(Game_Manager.screen_width * 0.7, Game_Manager.screen_height * 0.5),
+                           center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.5),
                            width=Game_Manager.screen_width * 0.2,
                            height=Game_Manager.screen_height * 0.3)
 
