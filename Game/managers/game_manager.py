@@ -41,6 +41,7 @@ class Game_Manager():
     game_name = ''
 
     player = None
+    HUD = None
     score = 0
     combo = 0
 
