@@ -25,7 +25,7 @@ class Game_Over_Screen(Screen):
                           font=SEGA,
                           color=WHITE)
 
-        self.image = Image(path="assets\player_defeat.png",
+        self.image = Image(path="assets\player_assets\player.png",
                            center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.5),
                            width=Game_Manager.screen_width * 0.2,
                            height=Game_Manager.screen_height * 0.3)

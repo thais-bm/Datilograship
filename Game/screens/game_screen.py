@@ -3,9 +3,16 @@ from screens.screen_base import Screen
 from entities.keyboard import Keyboard
 from entities.key_listener import KeyListener
 from entities.image import Image
+from entities.text import Text
 
 from managers.game_manager import Game_Manager
 from screens.game_over_screen import Game_Over_Screen
+
+from Game.entities.player import Player
+from resource.color import *
+from resource.fonts import *
+from resource.sound import *
+
 
 class Game_Screen(Screen):
     def populate(self):
@@ -20,10 +27,23 @@ class Game_Screen(Screen):
         self.keyboard = Keyboard(Game_Manager.screen_width * 0.35, Game_Manager.screen_height * 0.65)
 
         # Player debug image
-        self.image = Image(path="assets\player.png",
+        self.image = Image(path="assets\player_assets\player.png",
                            center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.4),
-                           width=Game_Manager.screen_width * 0.2,
-                           height=Game_Manager.screen_height * 0.3)
+                           width=Game_Manager.screen_width * 0.128,
+                           height=Game_Manager.screen_height * 0.128)
+
+        # Score Text
+        self.score_text = Text(content=f"Score: 999",
+                          center=(Game_Manager.screen_width * 0.1, Game_Manager.screen_height * 0.1),
+                          size=70,
+                          font=SEGA,
+                          color=WHITE)
+        # Combo Text
+        self.combo_text = Text(content=f"Combo: x9",
+                          center=(Game_Manager.screen_width * 0.1, Game_Manager.screen_height * 0.15),
+                          size=70,
+                          font=SEGA,
+                          color=WHITE)
 
         # Debug mode:
         self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: Game_Manager.change_screen(Game_Over_Screen())])
