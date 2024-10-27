@@ -4,6 +4,7 @@ from entities.key_listener import KeyListener
 from entities.player import Player
 from entities.text import Text
 from entities.image import Image
+from entities.letter_generator import Letter_Generator
 
 from managers.game_manager import Game_Manager
 from screens.game_over_screen import Game_Over_Screen
@@ -19,6 +20,7 @@ class Game_Screen(Screen):
         if pygame.mixer.get_busy():
             pygame.mixer.stop()
         
+
         #Esc Listerner
         self.esc_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
 
@@ -28,6 +30,9 @@ class Game_Screen(Screen):
                            width=Game_Manager.screen_width * 0.128,
                            height=Game_Manager.screen_height * 0.128)
         Game_Manager.player = self.player
+
+
+        self.letter_generator = Letter_Generator()
 
         # Score Text
         self.score_text = Text(content=f"Score: "+str(Game_Manager.score),

@@ -25,6 +25,7 @@ class Text(Entity):
         # Saving some of the atributes for remote changing
         self.content = content
         self.color = color
+        self.center = center
 
         # Setting up a text object
         self.font = pygame.font.Font(font, size)

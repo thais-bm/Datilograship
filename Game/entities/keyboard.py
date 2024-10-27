@@ -1,6 +1,8 @@
 from resource.color import *
 from entities.entity_base import Entity
 
+from managers.game_manager import Game_Manager
+
 import pygame
 import resource.fonts as fonts
 import resource.color as colors
@@ -92,23 +94,6 @@ class Keyboard(Entity):
                 layout.append((key, x, y))
                 
         return layout
-    
-    def get_key_color(self, key):
-        key = key.upper()  
-        if key in 'XSW2LO9':
-            return colors.YELLOW
-        elif key in 'AZQ1ÇP0': 
-            return colors.PINK
-        elif key in ['CAPS LOCK', 'SHIFT']: 
-            return colors.PINK
-        elif key in ['SPACE']:
-            return colors.CYAN
-        elif key in 'VFR45TGBNHY67UJM':
-            return colors.BLUE
-        elif key in 'CDE38IK':
-            return colors.ORANGE
-        else:
-            return colors.WHITE  
         
     def draw(self, screen):
         font = pygame.font.SysFont(fonts.SEGA, 30)
@@ -118,7 +103,7 @@ class Keyboard(Entity):
             key_x = self.container_rect.x + x
             key_y = self.container_rect.y + y
 
-            color = self.get_key_color(key)
+            color = Game_Manager.get_key_color(key)
             
             if self.pressed_keys.get(key.lower(), False): 
                 color = colors.GREEN

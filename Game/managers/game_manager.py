@@ -1,5 +1,7 @@
 import pygame
 
+from resource.color import *
+
 class Game_Manager():
     '''
     Class that manage everything that happens in game scope
@@ -44,6 +46,8 @@ class Game_Manager():
     HUD = None
     score = 0
     combo = 0
+
+    game_speed = 2
 
     def change_game_name(name):
         Game_Manager.game_name = name
@@ -92,3 +96,20 @@ class Game_Manager():
 
     def reset_combo():
         Game_Manager.combo = 0
+
+    def get_key_color(key):
+        key = key.upper()  
+        if key in 'XSW2LO9':
+            return YELLOW
+        elif key in 'AZQ1ÇP0': 
+            return PINK
+        elif key in ['CAPS LOCK', 'SHIFT']: 
+            return PINK
+        elif key in ['SPACE']:
+            return CYAN
+        elif key in 'VFR45TGBNHY67UJM':
+            return BLUE
+        elif key in 'CDE38IK':
+            return ORANGE
+        else:
+            return WHITE  
