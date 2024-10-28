@@ -7,6 +7,7 @@ from resource.fonts import *
 
 from managers.game_manager import Game_Manager
 from screens.menu_screen import Menu_Screen
+from screens.game_screen import Game_Screen
 
 folder_path = os.path.dirname(__file__)
 os.chdir(folder_path)
@@ -31,10 +32,11 @@ while Game_Manager.game_loop:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             Game_Manager.close_game()
-        
+
         # The first thing that will be checked are what events are registered on the current screen
         for event_func in Game_Manager.current_screen.event:
             event_func(event)
+
 
     # The second thing that will be checked are what drawings are registered on the current screen
     # The drawings will be read in layer order, 0 -> 1 -> 2, with the rightest coming on top
@@ -45,6 +47,7 @@ while Game_Manager.game_loop:
     # The third thing that will be checked are what processes are registered on the current screen
     for process in Game_Manager.current_screen.process:
         process()
+
 
     pygame.display.flip()
     game_clock.tick(60)

@@ -2,6 +2,7 @@ import pygame, math
 
 from resource.fonts import *
 from resource.color import *
+from resource.sound import *
 
 from managers.game_manager import Game_Manager
 
@@ -16,7 +17,7 @@ class Letter(Entity):
         self.text = Text(content = letter,
                          center = center,
                          size = 60,
-                         font = SANS,
+                         font = RETRO_MARIO,
                          color = Game_Manager.get_key_color(letter))
         self.click_listener = KeyListener([pygame.key.key_code(letter)],
                                           [self.on_letter_clicked])
@@ -42,4 +43,5 @@ class Letter(Entity):
         Game_Manager.player.rotate(self.text.center)
         Game_Manager.increase_combo()
         Game_Manager.increase_score(Game_Manager.combo)
+        pygame.mixer.Sound.play(PLAYER_HIT)
         self.destroy()

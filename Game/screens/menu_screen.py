@@ -14,15 +14,10 @@ from resource.fonts import *
 from resource.sound import *
 
 class Menu_Screen(Screen):
-    def __del__(self):
-        pass
     def populate(self):
-        # If music is been played on background -> Stop music
-        if pygame.mixer.get_busy():
-            pygame.mixer.stop()
-
-        # Start Background music
-        pygame.mixer.Sound.play(BACKGROUND, loops=-1)
+        # Start Background music - use of music for better peformance
+        pygame.mixer.music.load('assets/menu_assets/title.mp3')
+        pygame.mixer.music.play(-1)
         # self.keyboard = Keyboard(450, 580)
 
         # Esc Listener
@@ -53,6 +48,7 @@ class Menu_Screen(Screen):
 
         # Registering reactions for clicking it
         self.play_button.on_click.append(lambda: mng.Game_Manager.change_screen(Tutorial_Screen()))
+        self.play_button.on_click.append(lambda: pygame.mixer.music.unload())
         
         # Exit button
         self.exit_button = Button(content = "Exit",
@@ -72,3 +68,4 @@ class Menu_Screen(Screen):
         
         # Registering reactions for clicking it
         self.exit_button.on_click.append(mng.Game_Manager.close_game)
+        self.exit_button.on_click.append(lambda: pygame.mixer.music.unload())

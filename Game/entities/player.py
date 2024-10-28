@@ -3,12 +3,15 @@ from entities.image import Image
 
 from managers.game_manager import Game_Manager
 
+from resource.sound import *
+
 import math
 import pygame
 
 class Player(Entity):
     def __init__(self, center, sprite_path, hitbox = None, width = None, height = None, layer = 1):
         super().__init__(center, layer = layer)
+        pygame.mixer.init()
         self.life = 3
         self.sprite = Image(path = sprite_path, center = center, width = width, height = height)
         self.base_sprite = self.sprite.image
@@ -33,7 +36,9 @@ class Player(Entity):
 
     def take_damage(self):
         self.life -= 1
+        pygame.mixer.Sound.play(PLAYER_DMG)
         if self.life <= 0:
+            pygame.mixer.Sound.play(PLAYER_DEFEAT)
             Game_Manager.game_over()
 
     # Uncomment this code if you want to vizualize player hitbox

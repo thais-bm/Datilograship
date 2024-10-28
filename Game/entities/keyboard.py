@@ -6,6 +6,7 @@ from managers.game_manager import Game_Manager
 import pygame
 import resource.fonts as fonts
 import resource.color as colors
+from resource.sound import *
 
 class Keyboard(Entity):
     def __init__(self, x, y, layer = 0):
@@ -44,6 +45,7 @@ class Keyboard(Entity):
 
             # debug: key_char
             print(key_char,"Pressed")
+            pygame.mixer.Sound.play(KEYBOARD_TYPING)
             
             if mods and pygame.KMOD_CAPS and key_char.isalpha():
                 key_char = key_char.upper()

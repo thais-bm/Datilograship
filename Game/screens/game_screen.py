@@ -5,6 +5,7 @@ from entities.player import Player
 from entities.text import Text
 from entities.image import Image
 from entities.letter_generator import Letter_Generator
+from entities.keyboard import Keyboard
 
 from managers.game_manager import Game_Manager
 from screens.game_over_screen import Game_Over_Screen
@@ -19,7 +20,9 @@ class Game_Screen(Screen):
         # If music is being played on background -> Stop music
         if pygame.mixer.get_busy():
             pygame.mixer.stop()
-        
+
+        # Keyboard
+        self.keyboard = Keyboard(Game_Manager.screen_width * 0.35, Game_Manager.screen_height * 0.7)
 
         #Esc Listerner
         self.esc_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
@@ -38,14 +41,14 @@ class Game_Screen(Screen):
         self.score_text = Text(content=f"Score: "+str(Game_Manager.score),
                           center=(Game_Manager.screen_width * 0.1, Game_Manager.screen_height * 0.1),
                           size=70,
-                          font=SEGA,
+                          font=ANGRY_BIRDS,
                           color=WHITE)
         self.process.append(lambda: self.score_text.change_text(f"Score: "+str(Game_Manager.score)))
         # Combo Text
         self.combo_text = Text(content=f"Combo: "+str(Game_Manager.combo),
                           center=(Game_Manager.screen_width * 0.1, Game_Manager.screen_height * 0.15),
                           size=70,
-                          font=SEGA,
+                          font=ANGRY_BIRDS,
                           color=WHITE)
         self.process.append(lambda: self.combo_text.change_text(f"Combo: "+str(Game_Manager.combo)))
         
