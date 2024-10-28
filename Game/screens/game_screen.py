@@ -30,7 +30,7 @@ class Game_Screen(Screen):
         # Player
         self.player = Player(sprite_path="assets\player_assets\player.png",
                            center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.5),
-                           width=Game_Manager.screen_width * 0.128,
+                           width=Game_Manager.screen_width * 0.100,
                            height=Game_Manager.screen_height * 0.128)
         Game_Manager.player = self.player
 

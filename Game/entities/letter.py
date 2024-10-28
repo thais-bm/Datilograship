@@ -19,7 +19,7 @@ class Word(Entity):
         self.text = Text(content = word,
                          center = center,
                          size = 60,
-                         font = RETRO_MARIO,
+                         font = ANGRY_BIRDS,
                          color = Game_Manager.get_key_color(self.current_letter))
         
         

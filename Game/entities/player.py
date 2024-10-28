@@ -15,9 +15,7 @@ class Player(Entity):
         self.life = 3
         self.sprite = Image(path = sprite_path, center = center, width = width, height = height)
         self.base_sprite = self.sprite.image
-
         self.angle = -90
-
         self.hitbox = hitbox
         if self.hitbox == None:
             self.hitbox = self.sprite.image.get_rect()
