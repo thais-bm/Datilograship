@@ -1,4 +1,4 @@
-import pygame, math
+import pygame
 
 from resource.fonts import *
 from resource.color import *
@@ -7,20 +7,21 @@ from resource.sound import *
 from managers.game_manager import Game_Manager
 
 from entities.entity_base import Entity
-from entities.key_listener import KeyListener
 from entities.text import Text
 
-class Letter(Entity):
-    def __init__(self, letter, center, layer = 1):
+class Word(Entity):
+    def __init__(self, word, center, layer = 1):
         super().__init__(center, layer)
 
-        self.text = Text(content = letter,
+        self.word = word
+        self.current_letter = word[0]
+
+        self.text = Text(content = word,
                          center = center,
                          size = 60,
                          font = RETRO_MARIO,
-                         color = Game_Manager.get_key_color(letter))
-        self.click_listener = KeyListener([pygame.key.key_code(letter)],
-                                          [self.on_letter_clicked])
+                         color = Game_Manager.get_key_color(self.current_letter))
+        
         
     def process(self):
         diff_tuple = (self.text.center[0] - Game_Manager.player.center[0], self.text.center[1] - Game_Manager.player.center[1])
@@ -36,12 +37,9 @@ class Letter(Entity):
         
     def destroy(self):
         self.text.destroy()
-        self.click_listener.destroy()
         super().destroy()
 
-    def on_letter_clicked(self):
-        Game_Manager.player.rotate(self.text.center)
-        Game_Manager.increase_combo()
-        Game_Manager.increase_score(Game_Manager.combo)
-        pygame.mixer.Sound.play(PLAYER_HIT)
-        self.destroy()
+    def refresh(self):
+        self.text.change_text(self.word)
+        self.text.change_color(Game_Manager.get_key_color(self.current_letter))
+            

@@ -29,11 +29,11 @@ class Text(Entity):
 
         # Setting up a text object
         self.font = pygame.font.Font(font, size)
-        self.text = self.font.render(content, True, color)
-        self.refresh()
+        self.change_text(content)
 
     def change_text(self, new_text):
         '''Change and re-setup the text with another content'''
+        self.content = new_text
         self.text = self.font.render(new_text, True, self.color)
         self.refresh()
 

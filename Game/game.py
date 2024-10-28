@@ -7,7 +7,6 @@ from resource.fonts import *
 
 from managers.game_manager import Game_Manager
 from screens.menu_screen import Menu_Screen
-from screens.game_screen import Game_Screen
 
 folder_path = os.path.dirname(__file__)
 os.chdir(folder_path)
