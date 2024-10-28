@@ -21,8 +21,6 @@ class Game_Screen(Screen):
         if pygame.mixer.get_busy():
             pygame.mixer.stop()
 
-        # Keyboard
-        self.keyboard = Keyboard(Game_Manager.screen_width * 0.35, Game_Manager.screen_height * 0.7)
 
         #Esc Listerner
         self.esc_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])

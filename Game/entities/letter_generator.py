@@ -50,6 +50,7 @@ class Letter_Generator(Entity):
         self.current_letters[word.current_letter.upper()][0].append(word)
         
     def on_letter_clicked(self, letter):
+        pygame.mixer.Sound.play(KEYBOARD_TYPING)
         if len(self.current_letters.get(letter.upper())[0]) > 0:
             word = self.current_letters.get(letter.upper())[0][0]
             self.current_letters[word.current_letter.upper()][0].remove(word)
