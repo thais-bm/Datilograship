@@ -6,6 +6,8 @@ class Entity():
 
     Attributes
     ----------
+    center: Tuple[float, float]
+        The position to render the entity
     layer: int
         In whith render layer it will render, under (0), middle (1) or upper layer (2) 
     
@@ -20,8 +22,9 @@ class Entity():
     destroy():
         Remove the entity of the screen
     '''
-    def __init__(self, layer):
+    def __init__(self, center, layer):
         self.layer = layer
+        self.center = center
         mng.Game_Manager.current_screen.add_entity(self, layer)
 
     def event(self, event):

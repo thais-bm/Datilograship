@@ -2,6 +2,8 @@ import pygame
 
 from resource.color import *
 
+import screens
+
 class Game_Manager():
     '''
     Class that manage everything that happens in game scope
@@ -61,11 +63,13 @@ class Game_Manager():
         '''Run the game'''
         
         Game_Manager.game_started = True
+        Game_Manager.change_screen(screens.game_screen.Game_Screen())
     
     def game_over():
         '''End the game'''
 
         Game_Manager.game_started = False
+        Game_Manager.change_screen(screens.game_over_screen.Game_Over_Screen())
 
     def close_game():
         '''Close the game'''
@@ -90,12 +94,15 @@ class Game_Manager():
     
     def increase_combo(value = 1):
         Game_Manager.combo += value
+        if Game_Manager.combo % 5 == 0:
+            Game_Manager.game_speed += 1
 
     def increase_score(value):
         Game_Manager.score += value
 
     def reset_combo():
         Game_Manager.combo = 0
+        Game_Manager.game_speed = 2
 
     def get_key_color(key):
         key = key.upper()  
@@ -113,3 +120,8 @@ class Game_Manager():
             return ORANGE
         else:
             return WHITE  
+        
+    def center_to_rect(rect, center):
+        x = round(center[0])
+        y = round(center[1])
+        rect.center = (x, y)

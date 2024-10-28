@@ -15,7 +15,7 @@ class KeyListener(Entity):
         A list of actions that will happen if one of the registered keys is pressed
     '''
     def __init__(self, keys = [], actions = [], layer = 0):
-        super().__init__(layer)
+        super().__init__((0,0), layer)
         self.keys = keys
         self.actions = actions
 

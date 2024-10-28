@@ -3,6 +3,8 @@ from entities.entity_base import Entity
 from entities.text import Text
 from entities.image import Image
 
+from managers.game_manager import Game_Manager
+
 import pygame
 
 class Button(Entity):
@@ -28,9 +30,7 @@ class Button(Entity):
         self.sprite = Image(path = image_path, center = center)
         self.text = Text(content, center, size, font, color)
 
-        super().__init__(layer)
-
-        self.center = center
+        super().__init__(center, layer)
 
         self.hovering = False
         self.on_hover_enter = []
@@ -42,7 +42,7 @@ class Button(Entity):
     def process(self):
         mouse_pos = pygame.mouse.get_pos()
         image_rect = self.sprite.image.get_rect()
-        image_rect.center = self.center
+        Game_Manager.center_to_rect(image_rect, self.center)
         if (image_rect.collidepoint(mouse_pos)):
             if not self.hovering:
                 self.hovering = True
@@ -58,7 +58,7 @@ class Button(Entity):
     def event(self, event):
         mouse_pos = pygame.mouse.get_pos()
         image_rect = self.sprite.image.get_rect()
-        image_rect.center = self.center
+        Game_Manager.center_to_rect(image_rect, self.center)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if (image_rect.collidepoint(mouse_pos)):
                 for func in self.on_click:

@@ -9,7 +9,7 @@ import resource.color as colors
 
 class Keyboard(Entity):
     def __init__(self, x, y, layer = 0):
-        super().__init__(layer)
+        super().__init__((x,y), layer)
 
         self.x = x
         self.y = y

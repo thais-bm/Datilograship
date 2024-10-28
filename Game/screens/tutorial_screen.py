@@ -26,7 +26,7 @@ class Tutorial_Screen(Screen):
         # ESC listener -> Close game
         # Enter keyboard Listener -> Go to game screen
         self.exit_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
-        self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: mng.Game_Manager.change_screen(Game_Screen())])
+        self.enter_listener = KeyListener([pygame.K_RETURN], [Game_Manager.start_game])
 
         # Text setups
         self.title = Text(content = "Como jogar",

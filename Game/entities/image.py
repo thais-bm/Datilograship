@@ -18,7 +18,8 @@ class Image(Entity):
         The width to draw the image, if none is given it will use the original image size
     '''
     def __init__(self, path, center, width = None, height = None, layer = 2):
-        super().__init__(layer)
+        super().__init__(center, layer)
+        self.path = path
 
         # Loading the image
         self.image = pygame.image.load(path)
