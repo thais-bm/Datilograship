@@ -19,7 +19,13 @@ class Game_Over_Screen(Screen):
         #Esc Listerner
         self.esc_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
 
-        self.defeat = Text(content="DERROTA",
+        self.defeat = Text(content="VOCE MORREU",
+                          center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.20),
+                          size=70,
+                          font=SEGA,
+                          color=WHITE)
+        
+        self.points = Text(content="VOCE MARCOU "+str(Game_Manager.score)+" PONTOS",
                           center=(Game_Manager.screen_width * 0.5, Game_Manager.screen_height * 0.30),
                           size=70,
                           font=SEGA,
