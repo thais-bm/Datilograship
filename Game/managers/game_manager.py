@@ -61,7 +61,10 @@ class Game_Manager():
 
     def start_game():
         '''Run the game'''
-        
+        Game_Manager.combo = 0
+        Game_Manager.score = 0
+        Game_Manager.game_speed = 2
+
         Game_Manager.game_started = True
         Game_Manager.change_screen(screens.game_screen.Game_Screen())
     
