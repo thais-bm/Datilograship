@@ -6,6 +6,7 @@ from entities.text import Text
 from entities.image import Image
 from entities.letter_generator import Letter_Generator
 from entities.keyboard import Keyboard
+from entities.button import Button
 
 from managers.game_manager import Game_Manager
 from screens.game_over_screen import Game_Over_Screen
@@ -47,6 +48,26 @@ class Game_Screen(Screen):
                               size = 18,
                               font = SANS,
                               color = WHITE)
+        
+        #Esc Button
+        self.exit_button = Button(content = "Exit",
+                                      center = (Game_Manager.screen_width * 0.05, Game_Manager.screen_height * 0.03),
+                                      size = 50,
+                                      font = SEGA,
+                                      color = BLACK
+                                    )
+    
+        
+        self.exit_button.on_hover_enter.append(lambda: self.exit_button.text.change_text(self.exit_button.text.content))
+        self.exit_button.on_hover_enter.append(lambda: self.exit_button.text.change_color(PINK))
+        self.exit_button.on_hover_enter.append(lambda: DECISION.play(0,0))
+
+        self.exit_button.on_hover_exit.append(lambda: self.exit_button.text.change_text(self.exit_button.text.content.replace('- ', '')))
+        self.exit_button.on_hover_exit.append(lambda: self.exit_button.text.change_color(BLACK))
+        
+        self.exit_button.on_click.append(Game_Manager.close_game)
+        self.exit_button.on_click.append(lambda: pygame.mixer.music.unload())
+        
         # Score Text
         self.score_text = Text(content=f"Score: "+str(Game_Manager.score),
                           center=(Game_Manager.screen_width * 0.1, Game_Manager.screen_height * 0.1),
@@ -105,6 +126,8 @@ class Game_Screen(Screen):
                 self.hearts[i].destroy()
                 self.hearts[i] = (Image(path = path, 
                                     center = (Game_Manager.screen_width * (0.7 + 0.1 * i), Game_Manager.screen_height * 0.15)))
+                
+    
         
         
     
