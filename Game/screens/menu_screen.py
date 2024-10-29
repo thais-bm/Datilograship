@@ -35,14 +35,19 @@ class Menu_Screen(Screen):
 
         # Game name in Menu
         self.title = Text(content = mng.Game_Manager.game_name, 
-                              center=(mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.1),
+                              center=(mng.Game_Manager.screen_width * 0.5, mng.Game_Manager.screen_height * 0.1),
                               size = 60,
                               font = SEGA,
                               color = WHITE)
         
+        self.player = Image(path="assets\player_assets\player.png",
+                           center=(mng.Game_Manager.screen_width * 0.5, mng.Game_Manager.screen_height * 0.25),
+                           width=mng.Game_Manager.screen_width * 0.100,
+                           height=mng.Game_Manager.screen_height * 0.128)
+        
         # Play button
         self.play_button = Button(content = "Play",
-                                      center = (mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.4),
+                                      center = (mng.Game_Manager.screen_width * 0.5, mng.Game_Manager.screen_height * 0.4),
                                       size = 50,
                                       font = SEGA,
                                       color = BLACK)
@@ -62,7 +67,7 @@ class Menu_Screen(Screen):
         
         # Exit button
         self.exit_button = Button(content = "Exit",
-                                      center = (mng.Game_Manager.screen_width * 0.2, mng.Game_Manager.screen_height * 0.5),
+                                      center = (mng.Game_Manager.screen_width * 0.5, mng.Game_Manager.screen_height * 0.5),
                                       size = 50,
                                       font = SEGA,
                                       color = BLACK)

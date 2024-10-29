@@ -59,6 +59,28 @@ class Game_Screen(Screen):
         self.hearts = [None, None, None]
         self.process.append(self.update_life)
 
+        
+        self.indicador_text = Text(content=f"INDICADOR",
+                          center=(Game_Manager.screen_width * 0.9, Game_Manager.screen_height * 0.75),
+                          size=40,
+                          font=ANGRY_BIRDS,
+                          color=BLUE)
+        self.medio_text = Text(content=f"MEDIO",
+                          center=(Game_Manager.screen_width * 0.9, Game_Manager.screen_height * 0.80),
+                          size=40,
+                          font=ANGRY_BIRDS,
+                          color=ORANGE)
+        self.anelar_text = Text(content=f"ANELAR",
+                          center=(Game_Manager.screen_width * 0.9, Game_Manager.screen_height * 0.85),
+                          size=40,
+                          font=ANGRY_BIRDS,
+                          color=YELLOW)
+        self.midinho_text = Text(content=f"MIDINHO",
+                          center=(Game_Manager.screen_width * 0.9, Game_Manager.screen_height * 0.90),
+                          size=40,
+                          font=ANGRY_BIRDS,
+                          color=PINK)
+
         # Debug mode:
         # self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: Game_Manager.change_screen(Game_Over_Screen())])
 
