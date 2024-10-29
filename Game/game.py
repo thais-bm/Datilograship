@@ -18,7 +18,7 @@ info_object = pygame.display.Info()
 screen = pygame.display.set_mode((info_object.current_w * 1, info_object.current_h * 1))
 Game_Manager.update_screen_size()
 
-Game_Manager.change_game_name("Jogo sem nome aff")
+Game_Manager.change_game_name("DATILOGRASHIP")
 Game_Manager.change_screen(Menu_Screen())  # Here we set the screen to be a new Menu_Screen
 
 # Game loop setup

@@ -98,14 +98,15 @@ class Game_Manager():
     def increase_combo(value = 1):
         Game_Manager.combo += value
         if Game_Manager.combo % 5 == 0:
-            Game_Manager.game_speed += 1
+            if Game_Manager.game_speed < 2:
+                Game_Manager.game_speed += 1
 
     def increase_score(value):
         Game_Manager.score += value
 
     def reset_combo():
         Game_Manager.combo = 0
-        Game_Manager.game_speed = 2
+        Game_Manager.game_speed = 1
 
     def get_key_color(key):
         key = key.upper()  

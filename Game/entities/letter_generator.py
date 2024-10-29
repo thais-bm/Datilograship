@@ -28,7 +28,7 @@ class Letter_Generator(Entity):
         
 
     def process(self):
-        self.time_to_next_word -= Game_Manager.game_speed
+        self.time_to_next_word -= 5 + Game_Manager.combo/50
         if self.time_to_next_word <= 0:
             self.time_to_next_word = self.default_time_to_next_word
             word = random.choice(self.letters)
@@ -38,7 +38,7 @@ class Letter_Generator(Entity):
             self.spawn_word(word)
 
     def spawn_word(self, text):
-        direction = random.randint(0,359)
+        direction = random.choice([random.randint(30,150),random.randint(210,330)])
         x = Game_Manager.player.center[0] + math.sin(math.radians(direction)) * self.spawn_distance
         y = Game_Manager.player.center[1] + math.cos(math.radians(direction)) * self.spawn_distance
 
@@ -52,22 +52,23 @@ class Letter_Generator(Entity):
     def on_letter_clicked(self, letter):
         pygame.mixer.Sound.play(KEYBOARD_TYPING)
         if len(self.current_letters.get(letter.upper())[0]) > 0:
-            word = self.current_letters.get(letter.upper())[0][0]
-            self.current_letters[word.current_letter.upper()][0].remove(word)
-
-            Game_Manager.player.rotate(word.text.center)
-            Game_Manager.increase_combo()
-            Game_Manager.increase_score(Game_Manager.combo)
-
             pygame.mixer.Sound.play(PLAYER_HIT)
+            words = self.current_letters.get(letter.upper())[0].copy()
+            for word in words:
+                self.current_letters[word.current_letter.upper()][0].remove(word)
 
-            if len(word.word) > 1:
-                word.word = word.word[1:]
-                word.current_letter = word.word[0]
-                self.current_letters[word.current_letter.upper()][0].append(word)
-                word.refresh()
-            else:
-                word.destroy()
+                Game_Manager.player.rotate(word.text.center)
+                Game_Manager.increase_combo()
+                Game_Manager.increase_score(Game_Manager.combo)
+
+
+                if len(word.word) > 1:
+                    word.word = word.word[1:]
+                    word.current_letter = word.word[0]
+                    self.current_letters[word.current_letter.upper()][0].append(word)
+                    word.refresh()
+                else:
+                    word.destroy()
         else:
             Game_Manager.player.take_damage()
             Game_Manager.reset_combo()
