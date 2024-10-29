@@ -23,6 +23,8 @@ class Player(Entity):
 
     #function to rotate player shooty thing sprite to aim for specified coordinates
     def rotate(self, target_pos):
+        if Game_Manager.game_started == False:
+            return
         dx = target_pos[0] - self.center[0]
         dy = target_pos[1] - self.center[1]
         tan = dx/dy
@@ -33,6 +35,8 @@ class Player(Entity):
         Game_Manager.center_to_rect(self.hitbox, self.center)
 
     def take_damage(self):
+        if Game_Manager.game_started == False:
+            return
         self.life -= 1
         pygame.mixer.Sound.play(PLAYER_DMG)
         if self.life <= 0:

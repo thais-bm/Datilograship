@@ -27,8 +27,9 @@ class Game_Screen(Screen):
                             height=Game_Manager.screen_height)
 
 
-        #Esc Listerner
-        self.esc_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
+      #Esc Listerner
+        self.esc_listener = KeyListener([pygame.K_ESCAPE], [lambda: Game_Manager.pause_game()])
+          
 
         # Player
         self.player = Player(sprite_path="assets\player_assets\player.png",
@@ -62,6 +63,8 @@ class Game_Screen(Screen):
         # self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: Game_Manager.change_screen(Game_Over_Screen())])
 
     def update_life(self):
+        if Game_Manager.game_started == False:
+            return
         for i in range(3):
             if i + 1 <= Game_Manager.player.life:
                 path = "assets/player_assets/life_0.png"
@@ -76,4 +79,4 @@ class Game_Screen(Screen):
                                     center = (Game_Manager.screen_width * (0.7 + 0.1 * i), Game_Manager.screen_height * 0.15)))
         
         
-        
+    

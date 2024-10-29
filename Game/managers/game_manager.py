@@ -73,6 +73,10 @@ class Game_Manager():
 
         Game_Manager.game_started = False
         Game_Manager.change_screen(screens.game_over_screen.Game_Over_Screen())
+        
+    def pause_game():
+        '''Pause the game'''
+        Game_Manager.game_started = not Game_Manager.game_started
 
     def close_game():
         '''Close the game'''
@@ -96,14 +100,20 @@ class Game_Manager():
         return n_per_pixel * Game_Manager.screen_width
     
     def increase_combo(value = 1):
+        if Game_Manager.game_started == False:
+            return
         Game_Manager.combo += value
         if Game_Manager.combo % 5 == 0:
             Game_Manager.game_speed += 1
 
     def increase_score(value):
+        if Game_Manager.game_started == False:
+            return
         Game_Manager.score += value
 
     def reset_combo():
+        if Game_Manager.game_started == False:
+            return
         Game_Manager.combo = 0
         Game_Manager.game_speed = 2
 

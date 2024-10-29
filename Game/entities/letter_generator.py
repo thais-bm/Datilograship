@@ -28,6 +28,9 @@ class Letter_Generator(Entity):
         
 
     def process(self):
+        if Game_Manager.game_started == False:
+            return
+            
         self.time_to_next_word -= Game_Manager.game_speed
         if self.time_to_next_word <= 0:
             self.time_to_next_word = self.default_time_to_next_word
@@ -38,6 +41,8 @@ class Letter_Generator(Entity):
             self.spawn_word(word)
 
     def spawn_word(self, text):
+        if Game_Manager.game_started == False:
+            return
         direction = random.randint(0,359)
         x = Game_Manager.player.center[0] + math.sin(math.radians(direction)) * self.spawn_distance
         y = Game_Manager.player.center[1] + math.cos(math.radians(direction)) * self.spawn_distance
@@ -50,6 +55,8 @@ class Letter_Generator(Entity):
         self.current_letters[word.current_letter.upper()][0].append(word)
         
     def on_letter_clicked(self, letter):
+        if Game_Manager.game_started == False:
+            return
         pygame.mixer.Sound.play(KEYBOARD_TYPING)
         if len(self.current_letters.get(letter.upper())[0]) > 0:
             word = self.current_letters.get(letter.upper())[0][0]

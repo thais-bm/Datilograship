@@ -24,6 +24,8 @@ class Word(Entity):
         
         
     def process(self):
+        if Game_Manager.game_started == False:
+            return
         diff_tuple = (self.text.center[0] - Game_Manager.player.center[0], self.text.center[1] - Game_Manager.player.center[1])
         diff_vector = pygame.Vector2(diff_tuple)
         normalized_diff_vector = diff_vector.normalize()
@@ -36,10 +38,14 @@ class Word(Entity):
             self.destroy()
         
     def destroy(self):
+        if Game_Manager.game_started == False:
+            return
         self.text.destroy()
         super().destroy()
 
     def refresh(self):
+        if Game_Manager.game_started == False:
+            return
         self.text.change_text(self.word)
         self.text.change_color(Game_Manager.get_key_color(self.current_letter))
             
