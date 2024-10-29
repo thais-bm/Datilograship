@@ -21,6 +21,11 @@ class Game_Screen(Screen):
         if pygame.mixer.get_busy():
             pygame.mixer.stop()
 
+        self.image = Image(path="assets/game_background.jpg",
+                            center=(Game_Manager.screen_width * 0.5,Game_Manager.screen_height * 0.5),
+                            width=Game_Manager.screen_width,
+                            height=Game_Manager.screen_height)
+
 
         #Esc Listerner
         self.esc_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])

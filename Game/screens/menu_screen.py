@@ -5,6 +5,7 @@ import managers.game_manager as mng
 from entities.text import Text
 from entities.key_listener import KeyListener
 from entities.button import Button
+from entities.image import Image
 
 from screens.screen_base import Screen
 from screens.tutorial_screen import Tutorial_Screen
@@ -18,7 +19,12 @@ class Menu_Screen(Screen):
         # Start Background music - use of music for better peformance
         pygame.mixer.music.load('assets/menu_assets/title.mp3')
         pygame.mixer.music.play(-1)
-        # self.keyboard = Keyboard(450, 580)
+        pygame.mixer.music.set_volume(1)
+
+        self.image = Image(path="assets/menu_assets/background.png",
+                           center=(mng.Game_Manager.screen_width * 0.5, mng.Game_Manager.screen_height * 0.5),
+                           width=mng.Game_Manager.screen_width,
+                           height=mng.Game_Manager.screen_height)
 
         # Esc Listener
         self.exit_listener = KeyListener([pygame.K_ESCAPE], [mng.Game_Manager.close_game])

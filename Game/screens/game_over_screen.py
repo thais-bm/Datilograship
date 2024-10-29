@@ -15,6 +15,9 @@ class Game_Over_Screen(Screen):
         # If music is being played on background -> Stop music
         if pygame.mixer.get_busy():
             pygame.mixer.stop()
+        pygame.mixer.music.load('assets/audio_assets/gameover.ogg')
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(1)
 
         #Esc Listerner
         self.esc_listener = KeyListener([pygame.K_ESCAPE], [Game_Manager.close_game])
