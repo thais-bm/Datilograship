@@ -27,8 +27,7 @@ class Player(Entity):
             return
         dx = target_pos[0] - self.center[0]
         dy = target_pos[1] - self.center[1]
-        tan = dx/dy
-        self.angle = math.degrees(math.atan(tan))
+        self.angle = math.degrees(math.atan2(dx, dy))
 
         self.sprite.image = pygame.transform.rotate(self.base_sprite, self.angle)
         self.hitbox = self.sprite.image.get_rect()

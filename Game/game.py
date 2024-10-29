@@ -2,14 +2,16 @@ import pygame
 pygame.init()
 
 import sys, os
+
+folder_path = os.path.dirname(__file__)
+os.chdir(folder_path)
+
 from resource.color import *
 from resource.fonts import *
 
 from managers.game_manager import Game_Manager
 from screens.menu_screen import Menu_Screen
 
-folder_path = os.path.dirname(__file__)
-os.chdir(folder_path)
 
 # Screen Setup
 # setting the game screen to the size of the computer screen
