@@ -43,7 +43,7 @@ class Game_Over_Screen(Screen):
                               color = WHITE)
 
         # Trying to run away from circular import
-        from screens.menu_screen import Menu_Screen
+        from screens.score_screen import Score_Screen
         self.return_listener = KeyListener([pygame.K_RETURN],
-                                           [lambda: Game_Manager.change_screen(Menu_Screen())])
+                                           [lambda: Game_Manager.change_screen(Score_Screen())])
 

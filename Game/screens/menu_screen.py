@@ -1,4 +1,4 @@
-import pygame
+import pygame, os
 
 import managers.game_manager as mng
 
@@ -15,6 +15,10 @@ from resource.sound import *
 
 class Menu_Screen(Screen):
     def populate(self):
+        # Creates Score file if it doesn't exists
+        if not os.path.isfile("assets/sc_rec"):
+            open("assets/sc_rec","w")
+
         # Start Background music - use of music for better peformance
         pygame.mixer.music.load('assets/menu_assets/title.mp3')
         pygame.mixer.music.play(-1)

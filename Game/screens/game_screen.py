@@ -54,7 +54,7 @@ class Game_Screen(Screen):
         self.process.append(self.update_life)
 
         # Debug mode:
-        self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: Game_Manager.change_screen(Game_Over_Screen())])
+        # self.enter_listener = KeyListener([pygame.K_RETURN], [lambda: Game_Manager.change_screen(Game_Over_Screen())])
 
     def update_life(self):
         for i in range(3):
