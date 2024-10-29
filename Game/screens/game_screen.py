@@ -41,6 +41,12 @@ class Game_Screen(Screen):
 
         self.letter_generator = Letter_Generator()
 
+        #Esc text
+        self.enter = Text(content = "Aperte ESC para pausar e despausar",
+                              center=(Game_Manager.screen_width * 0.12, Game_Manager.screen_height * 0.97),
+                              size = 18,
+                              font = SANS,
+                              color = WHITE)
         # Score Text
         self.score_text = Text(content=f"Score: "+str(Game_Manager.score),
                           center=(Game_Manager.screen_width * 0.1, Game_Manager.screen_height * 0.1),
