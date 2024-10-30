@@ -38,15 +38,15 @@ class Screen():
         try:
             self.process.remove(entity.process)
         except:
-            print("INFO: Process that is not here tried to me removed")
+            print("INFO: Process that is not here tried to be removed")
         try:
             self.draw[layer].remove(entity.draw)
         except:
-            print("INFO: Draw that is not here tried to me removed")
+            print("INFO: Draw that is not here tried to be removed")
         try:
             self.event.remove(entity.event)
         except:
-            print("INFO: Event that is not here tried to me removed")
+            print("INFO: Event that is not here tried to be removed")
 
 
     def clear_screen(self):
