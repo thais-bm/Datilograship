@@ -8,6 +8,7 @@ os.chdir(folder_path)
 
 from resource.color import *
 from resource.fonts import *
+from entities.explosion import render_all_explosions
 
 from managers.game_manager import Game_Manager
 from screens.menu_screen import Menu_Screen
@@ -44,12 +45,13 @@ while Game_Manager.game_loop:
     for layer in Game_Manager.current_screen.draw:
         for draw in layer:
             draw(screen)
+    render_all_explosions(screen)
 
     # The third thing that will be checked are what processes are registered on the current screen
     for process in Game_Manager.current_screen.process:
         process()
 
-
+    
     pygame.display.flip()
     game_clock.tick(60)
 

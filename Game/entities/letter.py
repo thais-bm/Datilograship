@@ -8,6 +8,7 @@ from managers.game_manager import Game_Manager
 
 from entities.entity_base import Entity
 from entities.text import Text
+from entities.explosion import explosion
 
 class Word(Entity):
     def __init__(self, word, center, layer = 1):
@@ -40,6 +41,7 @@ class Word(Entity):
     def destroy(self):
         if Game_Manager.game_started == False:
             return
+        explosion(self.text.center)
         self.text.destroy()
         super().destroy()
 

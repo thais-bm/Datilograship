@@ -7,6 +7,7 @@ from entities.image import Image
 from entities.letter_generator import Letter_Generator
 from entities.keyboard import Keyboard
 from entities.button import Button
+import entities.explosion as explosion
 
 from managers.game_manager import Game_Manager
 from screens.game_over_screen import Game_Over_Screen
@@ -86,6 +87,7 @@ class Game_Screen(Screen):
         self.hearts = [None, None, None]
         self.process.append(self.update_life)
 
+        self.process.append(explosion.tick_all_explosions)
         
         self.indicador_text = Text(content=f"INDICADOR",
                           center=(Game_Manager.screen_width * 0.9, Game_Manager.screen_height * 0.75),
