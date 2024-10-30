@@ -1,6 +1,6 @@
 from resource.color import *
 from entities.entity_base import Entity
-
+from managers.game_manager import Game_Manager
 import pygame
 
 class KeyListener(Entity):
