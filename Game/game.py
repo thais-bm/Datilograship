@@ -24,6 +24,9 @@ Game_Manager.update_screen_size()
 Game_Manager.change_game_name("DATILOGRASHIP")
 Game_Manager.change_screen(Menu_Screen())  # Here we set the screen to be a new Menu_Screen
 
+pause_screen = pygame.image.load("assets/other_assets/pause.jpg")
+pause_screen = pygame.transform.scale(pause_screen, screen.get_size())
+
 # Game loop setup
 Game_Manager.game_loop = True
 game_clock = pygame.time.Clock()
@@ -50,7 +53,8 @@ while Game_Manager.game_loop:
     # The third thing that will be checked are what processes are registered on the current screen
     for process in Game_Manager.current_screen.process:
         process()
-
+    if Game_Manager.game_paused == True:
+        screen.blit(pause_screen, (0,0))
     
     pygame.display.flip()
     game_clock.tick(60)

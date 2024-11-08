@@ -36,6 +36,7 @@ class Game_Manager():
     '''
     game_started = False
     game_loop = True
+    game_paused = False
 
     screen_width = 0
     screen_height = 0
@@ -77,6 +78,7 @@ class Game_Manager():
     def pause_game():
         '''Pause the game'''
         Game_Manager.game_started = not Game_Manager.game_started
+        Game_Manager.game_paused = not Game_Manager.game_paused
 
     def close_game():
         '''Close the game'''
