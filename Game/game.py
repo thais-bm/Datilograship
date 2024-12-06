@@ -48,7 +48,9 @@ while Game_Manager.game_loop:
     for layer in Game_Manager.current_screen.draw:
         for draw in layer:
             draw(screen)
-    render_all_explosions(screen)
+            
+    if Game_Manager.game_started:
+        render_all_explosions(screen)
 
     # The third thing that will be checked are what processes are registered on the current screen
     for process in Game_Manager.current_screen.process:
